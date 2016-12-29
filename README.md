@@ -74,11 +74,11 @@ ctzc.getTzById( "America/New_York" ) //Expects timezone id
 ```JavaScript
 ctzc.getTzIdsByCountryCode( "US" ) //Expects two digit country code
 //Returns : Array of timezone-ids
-// [ "America/New_York" , "America/Detroit" , "America/Kentucky/Louisville" , "America/Kentucky/Monticello" , "America/Indiana/Indianapolis" , "America/Indiana/Vincennes" , "America/Indiana/Winamac" , "America/Indiana/Marengo" , "America/Indiana/Petersburg" , "America/Indiana/Vevay" , "America/Chicago" , "America/Indiana/Tell_City" , "America/Indiana/Knox" , "America/Menominee" , "America/North_Dakota/Center" , "America/North_Dakota/New_Salem" , "America/North_Dakota/Beulah" , "America/Denver" , "America/Boise" , "America/Phoenix" , "America/Los_Angeles" , "America/Anchorage" , "America/Juneau" , "America/Sitka" , "America/Yakutat" , "America/Nome" , "America/Adak" , "America/Metlakatla" , "Pacific/Honolulu" ]
+//[ "America/New_York" , "America/Detroit" , "America/Kentucky/Louisville" , "America/Kentucky/Monticello" , "America/Indiana/Indianapolis" , "America/Indiana/Vincennes" , "America/Indiana/Winamac" , "America/Indiana/Marengo" , "America/Indiana/Petersburg" , "America/Indiana/Vevay" , "America/Chicago" , "America/Indiana/Tell_City" , "America/Indiana/Knox" , "America/Menominee" , "America/North_Dakota/Center" , "America/North_Dakota/New_Salem" , "America/North_Dakota/Beulah" , "America/Denver" , "America/Boise" , "America/Phoenix" , "America/Los_Angeles" , "America/Anchorage" , "America/Juneau" , "America/Sitka" , "America/Yakutat" , "America/Nome" , "America/Adak" , "America/Metlakatla" , "Pacific/Honolulu" ]
 ```
 
 ```JavaScript
-ctzc.getTzsByCountryCode( "GB" ) //Expect two digit country code
+ctzc.getTzsByCountryCode( "GB" ) //Expects two digit country code
 //Returns : Array of timezones
 //[{
 //    "displayName":"Greenwich Mean Time",
@@ -89,3 +89,6 @@ ctzc.getTzsByCountryCode( "GB" ) //Expect two digit country code
 //    "id":"Europe/London"
 //}]
 ```
+
+#### Note:
+* Returns undefined for invalid param
