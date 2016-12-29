@@ -45,7 +45,7 @@ var countryTzCurrency 	=	function()
 		return country ? country.timeZone : undefined;
 	}
 
-	this.getTzByCountryCode 			=	function( code )
+	this.getTzsByCountryCode 			=	function( code )
 	{
 		var tzIds 			=	this.getTzIdsByCountryCode( code );
 		if( tzIds )
