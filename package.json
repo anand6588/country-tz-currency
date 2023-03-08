@@ -1,6 +1,6 @@
 {
   "name": "country-tz-currency",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Get countries, timezones and currencies ",
   "main": "src/index.js",
   "scripts": {
