@@ -1,64 +1,80 @@
-var data 	=	require( '../data/data.json' );
+var i18next = require('i18next');
 
+var data = require('../data/data.json');
 
-var countryTzCurrency 	=	function()
-{
-	this.getAllCountries  = function()
-	{
+var en = require('../locales/en.json');
+var fr = require('../locales/fr.json');
+
+class countryTzCurrency {
+	constructor() {
+		this.locale = 'en';
+
+		this.i18next = i18next;
+
+		this.i18next.init({
+			lng: this.locale,
+			resources: {
+				en: {
+					translation: en
+				},
+				fr: {
+					translation: fr
+				}
+			},
+			fallbackLng: 'en'
+		});
+	}
+
+	getAllCountries = function () {
 		return data.countries;
-	}
+	};
 
-	this.getAllTimezones =	function()
-	{
+	getAllTimezones = function () {
 		return data.timezones;
-	}
+	};
 
-	this.getAllCurrencies  =	function()
-	{
+	getAllCurrencies = function () {
 		return data.currencies;
-	}
+	};
 
-	this.getCountryByCode  = 	function( code )
-	{
+	getCountryByCode = function (code) {
 		return this.getAllCountries()[code];
-	}
+	};
 
-	this.getCurrencyByCode  =	function( code )
-	{
+	getCurrencyByCode = function (code) {
 		return this.getAllCurrencies()[code];
-	}
+	};
 
-	this.getCurrencyByCountryCode  = 	function( code )
-	{
-		var country 		=	this.getAllCountries()[code];
-		return country ? this.getCurrencyByCode( country.currencyCode ) : undefined;
-	}
+	getCurrencyByCountryCode = function (code) {
+		var country = this.getAllCountries()[code];
 
-	this.getTzById =	function( timezoneId )
-	{
+		return country ? this.getCurrencyByCode(country.currencyCode) : undefined;
+	};
+
+	getTzById = function (timezoneId) {
 		return this.getAllTimezones()[timezoneId];
-	}
+	};
 
-	this.getTzIdsByCountryCode  =	function( code )
-	{
-		var country 		=	this.getAllCountries()[code];
+	getTzIdsByCountryCode = function (code) {
+		var country = this.getAllCountries()[code];
+
 		return country ? country.timeZone : undefined;
-	}
+	};
 
-	this.getTzsByCountryCode =	function( code )
-	{
-		var tzIds 			=	this.getTzIdsByCountryCode( code );
-		if( tzIds )
-		{
-			var tzs 		=	[];
-			var len 		=	tzIds.length;
-			for( var i=0; i<len; i++ )
-			{
-				tzs.push( this.getTzById( tzIds[i] ) );
+	getTzsByCountryCode = function (code) {
+		var tzIds = this.getTzIdsByCountryCode(code);
+
+		if (tzIds) {
+			var tzs = [];
+			var len = tzIds.length;
+
+			for (var i = 0; i < len; i++) {
+				tzs.push(this.getTzById(tzIds[i]));
 			}
+
 			return tzs;
 		}
-	}
+	};
 }
 
 module.exports = new countryTzCurrency();
