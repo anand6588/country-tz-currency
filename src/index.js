@@ -25,6 +25,16 @@ class countryTzCurrency {
 		});
 	}
 
+	setLocale = function (locale) {
+		this.locale = locale;
+
+		this.i18next.changeLanguage(locale);
+	};
+
+	getLocale = function () {
+		return this.locale;
+	};
+
 	getAllCountries = function () {
 		return data.countries;
 	};

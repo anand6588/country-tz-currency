@@ -13,6 +13,8 @@ var ctzc 	=	require('country-tz-currency');
 
 ctzc.setLocale( "fr" ) //Expects two digit language code
 
+ctzc.getLocale() //Returns current locale
+
 ctzc.getAllCountries() //Returns list of country objects
 
 ctzc.getAllTimezones() //Returns list of timezone objects
