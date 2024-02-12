@@ -1,13 +1,17 @@
 # country-tz-currency
 
 ## Install
+
 ```
 npm install country-tz-currency --save
 ```
+
 ## Usage
 
 ```JavaScript
 var ctzc 	=	require('country-tz-currency');
+
+ctzc.setLocale( "fr" ) //Expects two digit language code
 
 ctzc.getAllCountries() //Returns list of country objects
 
@@ -91,4 +95,5 @@ ctzc.getTzsByCountryCode( "GB" ) //Expects two digit country code
 ```
 
 #### Note:
-* Returns undefined for invalid param
+
+- Returns undefined for invalid param
