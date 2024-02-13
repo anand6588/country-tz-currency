@@ -1,27 +1,32 @@
 {
-  "name": "country-tz-currency",
-  "version": "1.0.2",
-  "description": "Get countries, timezones and currencies ",
-  "main": "src/index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/anand6588/country-tz-currency.git"
-  },
-  "keywords":["countries",
-    "timezones",
-    "currencies",
-    "country",
-    "code",
-    "area",
-    "code",
-    "currency"],
-  "author": "Anand Thiyagarasu <anand.thyagaraju@gmail.com>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/anand6588/country-tz-currency/issues"
-  },
-  "homepage": "https://github.com/anand6588/country-tz-currency#readme"
+	"name": "country-tz-currency",
+	"version": "1.0.2",
+	"description": "Get countries, timezones and currencies ",
+	"main": "src/index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/anand6588/country-tz-currency.git"
+	},
+	"keywords": [
+		"countries",
+		"timezones",
+		"currencies",
+		"country",
+		"code",
+		"area",
+		"code",
+		"currency"
+	],
+	"author": "Anand Thiyagarasu <anand.thyagaraju@gmail.com>",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/anand6588/country-tz-currency/issues"
+	},
+	"homepage": "https://github.com/anand6588/country-tz-currency#readme",
+	"dependencies": {
+		"i18next": "^23.8.2"
+	}
 }
