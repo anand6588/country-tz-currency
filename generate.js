@@ -1,26 +1,9 @@
-const data = require('./data/data.json');
+var ctzc = require('./src/index.js');
 
-const countries = data.countries;
-const currencies = data.currencies;
-const timezones = data.timezones;
+console.log('Default locale: ' + ctzc.getLocale());
 
-const countryNames = Object.keys(countries).reduce((countryNames, code) => Object.assign(countryNames, { [code]: countries[code].countryName }), {});
+ctzc.setLocale('fr');
 
-const countryCapitalCities = Object.keys(countries).reduce(
-	(countryCapitalCities, code) => Object.assign(countryCapitalCities, { [code]: countries[code].capital }),
-	{}
-);
+console.log('Selected locale: ' + ctzc.getLocale());
 
-const singularCurrencyNames = Object.keys(currencies).reduce(
-	(singularCurrencyNames, code) => Object.assign(singularCurrencyNames, { [code]: currencies[code].name }),
-	{}
-);
-
-const pluralCurrencyNames = Object.keys(currencies).reduce(
-	(pluralCurrencyNames, code) => Object.assign(pluralCurrencyNames, { [code]: currencies[code].name_plural }),
-	{}
-);
-
-const timezoneNames = Object.keys(timezones).reduce((timezoneNames, id) => Object.assign(timezoneNames, { [id]: timezones[id].displayName }), {});
-
-console.log(`\n\n\n${JSON.stringify(timezoneNames, null, 2)}\n\n`);
+console.log('\n\n' + JSON.stringify(ctzc.getAllCurrencies(), null, 2) + '\n\n');

@@ -2,17 +2,19 @@ var i18next = require('i18next');
 
 var data = require('../data/data.json');
 
-var en = require('../locales/en.json');
-var fr = require('../locales/fr.json');
+var en = require('../data/locales/en.json');
+var fr = require('../data/locales/fr.json');
 
 class countryTzCurrency {
+	#locale = 'en';
+	#i18next = i18next;
+	#countries = {};
+	#currencies = {};
+	#timezones = {};
+
 	constructor() {
-		this.locale = 'en';
-
-		this.i18next = i18next;
-
-		this.i18next.init({
-			lng: this.locale,
+		this.#i18next.init({
+			lng: this.#locale,
 			resources: {
 				en: {
 					translation: en
@@ -23,20 +25,65 @@ class countryTzCurrency {
 			},
 			fallbackLng: 'en'
 		});
+
+		this.#setCountries();
+		this.#setCurrencies();
 	}
 
-	setLocale = function (locale) {
-		this.locale = locale;
+	#setCountries = function () {
+		this.#countries = Object.keys(data.countries).reduce(
+			(countries, code) =>
+				Object.assign(countries, {
+					[code]: Object.assign(data.countries[code], {
+						countryName: this.#i18next.t('countries.' + code),
+						capital: this.#i18next.t('capitalCities.' + code)
+					})
+				}),
+			{}
+		);
+	};
 
-		this.i18next.changeLanguage(locale);
+	#setCurrencies = function () {
+		this.#currencies = Object.keys(data.currencies).reduce(
+			(currencies, code) =>
+				Object.assign(currencies, {
+					[code]: Object.assign(data.currencies[code], {
+						name: this.#i18next.t('currencies.singular.' + code),
+						name_plural: this.#i18next.t('currencies.plural.' + code)
+					})
+				}),
+			{}
+		);
+	};
+
+	#setTimezones = function () {
+		this.#timezones = Object.keys(data.timezones).reduce(
+			(timezones, id) =>
+				Object.assign(timezones, {
+					[id]: Object.assign(data.timezones[id], {
+						name: this.#i18next.t('timezones.' + id)
+					})
+				}),
+			{}
+		);
+	};
+
+	setLocale = function (locale) {
+		this.#locale = locale;
+
+		this.#i18next.changeLanguage(this.#locale);
+
+		this.#setCountries();
+		this.#setCurrencies();
+		this.#setTimezones();
 	};
 
 	getLocale = function () {
-		return this.locale;
+		return this.#locale;
 	};
 
 	getAllCountries = function () {
-		return data.countries;
+		return this.#countries;
 	};
 
 	getAllTimezones = function () {
@@ -44,29 +91,29 @@ class countryTzCurrency {
 	};
 
 	getAllCurrencies = function () {
-		return data.currencies;
+		return this.#currencies;
 	};
 
 	getCountryByCode = function (code) {
-		return this.getAllCountries()[code];
+		return this.#countries[code];
 	};
 
 	getCurrencyByCode = function (code) {
-		return this.getAllCurrencies()[code];
+		return this.#currencies[code];
 	};
 
 	getCurrencyByCountryCode = function (code) {
-		var country = this.getAllCountries()[code];
+		var country = this.#countries[code];
 
 		return country ? this.getCurrencyByCode(country.currencyCode) : undefined;
 	};
 
 	getTzById = function (timezoneId) {
-		return this.getAllTimezones()[timezoneId];
+		return this.#timezones[timezoneId];
 	};
 
 	getTzIdsByCountryCode = function (code) {
-		var country = this.getAllCountries()[code];
+		var country = this.#countries[code];
 
 		return country ? country.timeZone : undefined;
 	};
